@@ -27,9 +27,11 @@ import (
 // who need the real ceiling must read it from the network.
 //
 // ledgers must be at least 1. Zero would produce an expiration equal to
-// latestLedger, which is valid for the current ledger only and almost certainly
-// not what the caller meant, so it is refused with ErrInvalidExpiration rather
-// than quietly producing a signature that expires immediately. An overflowing
+// latestLedger, which is already expired: the latest ledger an RPC reports has
+// closed, so the earliest ledger a transaction carrying the entry can be
+// applied in is latestLedger+1, and the host rejects it there. Zero is refused
+// with ErrInvalidExpiration rather than quietly producing a signature that can
+// never be accepted. An overflowing
 // sum is refused for the same reason: wrapping would turn a long lifetime into
 // an expiration in the past.
 func ExpirationAfter(latestLedger, ledgers uint32) (uint32, error) {
