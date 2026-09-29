@@ -101,8 +101,8 @@ Only the latest release receives fixes. At v0.1.0 that is the only release.
 
 ## Keys in this repository
 
-Every keypair in `testdata/` is derived deterministically from a label committed
-in plain text, so those keys are public and anyone can spend from them. They
-exist to make signatures reproducible. Never fund them on mainnet. No key used
-by the e2e tests is written to disk; they are generated per run and funded by
-friendbot on testnet.
+Every test key in this repository is public and must never be funded on mainnet.
+How they are derived, and the rules for adding one, are in
+[Deterministic test keys](CONTRIBUTING.md#deterministic-test-keys). The e2e
+tests do not use them: their keys are generated per run, funded by friendbot on
+testnet, and never written to disk.
