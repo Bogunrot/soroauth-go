@@ -19,6 +19,18 @@ import (
 // doc comment describes the bound as exclusive; the host source is the
 // authority.
 //
+// A worked example of that boundary. Suppose the RPC reports latestLedger
+// 1000. Ledger 1000 has already closed, so a transaction built now is applied
+// in ledger 1001 at the earliest:
+//
+//	call                          returns    accepted if applied in     rejected from
+//	ExpirationAfter(1000, 1)      1001       ledger 1001                ledger 1002
+//	ExpirationAfter(1000, 720)    1720       ledgers 1001 to 1720       ledger 1721
+//	ExpirationAfter(1000, 0)      refused    never (1000 has closed)    -
+//
+// The returned ledger is the last one in which the entry is accepted, not the
+// first one in which it is rejected.
+//
 // It has an upper bound this function cannot enforce. The host also rejects a
 // value above the network's max_live_until_ledger, with "signature expiration
 // is too late" (same function). That is a network setting, so it cannot be
