@@ -84,8 +84,8 @@ five.
 
 ## What each scenario proves
 
-| ID  | Scenario                                | What it proves                                                                                                                                                                                    | Result record |
-| --- | --------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------- |
+| ID              | Scenario                                | What it proves                                                                                                                                                                                    | Result record         |
+| --------------- | --------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------- |
 | [A](RESULTS.md) | Legacy `SOROBAN_CREDENTIALS_ADDRESS`    | An entry on the legacy arm, signed by soroauth, is accepted by the host.                                                                                                                          | [see run](RESULTS.md) |
 | [B](RESULTS.md) | CAP-71 `SOROBAN_CREDENTIALS_ADDRESS_V2` | The address-bound arm is accepted. The test reports whether simulation returned V2 directly or whether `UpgradeToV2` was needed.                                                                  | [see run](RESULTS.md) |
 | [C](RESULTS.md) | `AccountMultiSigner`                    | A multi-key signature vector meets a 2-of-2 medium threshold on a classic account. This signer has no JS equivalent, so the golden vectors cannot cover it; this is its proof.                    | [see run](RESULTS.md) |
@@ -102,7 +102,7 @@ five.
 | [N](RESULTS.md) | Nonce replay, first submission          | A valid entry is accepted, consuming its nonce.                                                                                                                                                   | [see run](RESULTS.md) |
 | [O](RESULTS.md) | Nonce replay, second submission         | A second envelope carrying the same signed entry — same address, same nonce — is refused with `Auth` / `ExistingValue`, "nonce already exists for address".                                       | [see run](RESULTS.md) |
 | [P](RESULTS.md) | Nonce replay, fresh-nonce control       | A new entry with a fresh nonce is accepted after the replay rejection, proving the account is not broken.                                                                                         | [see run](RESULTS.md) |
-| [Q](RESULTS.md) | Three-level delegate tree               | A tree three delegate levels deep (A -> B -> C -> D), chained through modular accounts, is accepted; the submitted envelope is decoded back to observe its shape and the leaf signature verifies.     | [see run](RESULTS.md) |
+| [Q](RESULTS.md) | Three-level delegate tree               | A tree three delegate levels deep (A -> B -> C -> D), chained through modular accounts, is accepted; the submitted envelope is decoded back to observe its shape and the leaf signature verifies. | [see run](RESULTS.md) |
 
 Several tests exist only to stop the accepting ones passing for the wrong
 reason:
